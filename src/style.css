@@ -136,3 +136,9 @@ body {
 
   background-color: #B71C1C;
 }
+
+/* 404 view */
+
+.full-width {
+    width: 100% !important;
+}

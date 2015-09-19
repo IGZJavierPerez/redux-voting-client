@@ -1,5 +1,5 @@
 import React from 'react/addons';
-import Router, {Route, DefaultRoute} from 'react-router';
+import Router, {Route, DefaultRoute, Redirect} from 'react-router';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import io from 'socket.io-client';
@@ -8,6 +8,7 @@ import {setClientId, setState, setConnectionState} from './action_creators';
 import remoteActionMiddleware from './remote_action_middleware';
 import getClientId from './client_id';
 import App from './components/App';
+import UhOh from './components/404';
 import {VotingContainer} from './components/Voting';
 import {ResultsContainer} from './components/Results';
 
@@ -37,7 +38,11 @@ store.dispatch(setClientId(getClientId()));
 
 const routes = <Route handler={App}>
   <Route path="/results" handler={ResultsContainer} />
-  <DefaultRoute handler={VotingContainer} />
+  <Route path="/voting" handler={VotingContainer} />
+  <Route name="404" path="/404" handler={ UhOh } />
+  {/* Redirects */}
+  <Redirect from="/" to="/voting" />
+  <Redirect from="*" to="/404" />
 </Route>;
 
 Router.run(routes, (Root) => {
