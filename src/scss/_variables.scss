@@ -1,0 +1,40 @@
+// palette
+$dark: #040203;
+$dark-gray: #7a8b99;
+$light-gray: #f1f1f1;
+$error: #d00;
+$red: #B71C1C;
+$purple: #673AB7;
+$light-purple: #7E57C2;
+$dark-blue: #311B92;
+$blue: #449dd1;
+
+$text: $dark;
+$button-text: #fff;
+$button-gray: #cccfd0;
+$background: $light-gray;
+
+// dimensions
+$x-small: 0.5rem;
+$small: 1rem;
+$medium: 2rem;
+$large: 3rem;
+$x-large: 4rem;
+
+// margins
+$big-padding: 10px;
+
+// media query breakpoints
+$breakpoint: 500px;
+
+/* Typography
+====================================== */
+
+$font-size: 2em;
+$line-height: 1.55;
+
+$heading-font: 'Source Sans Pro', Arial, sans-serif;
+$body-font: 'Source Sans Pro', Arial, sans-serif;
+$monospace: 'Ubuntu Mono', 'Andale Mono', AndaleMono, Consolas, monaco, monospace;
+
+$text-small: 0.76em;

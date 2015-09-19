@@ -1,0 +1,18 @@
+@import 'normalize';
+@import 'reset';
+
+@import 'variables';
+@import 'helpers';
+
+@import 'structure';
+@import 'general';
+
+// components
+@import 'navbar';
+@import 'vote';
+@import 'winner';
+@import 'connection-state';
+
+// screens
+@import 'voting';
+@import 'results';

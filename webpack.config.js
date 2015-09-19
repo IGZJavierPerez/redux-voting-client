@@ -1,4 +1,6 @@
+var path = require('path');
 var webpack = require('webpack');
+var autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: [
@@ -9,15 +11,19 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.jsx?$/,
-      exclude: /node_modules/,
+      include: path.join(__dirname, 'src'),
       loader: 'react-hot!babel'
     }, {
-      test: /\.css$/,
-      loader: 'style!css!autoprefixer?browsers=last 2 versions'
+      test: /\.scss$/,
+      include: path.join(__dirname, 'src'),
+      loader: 'style!css!postcss!sass'
     }]
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
+  },
+  postcss: function () {
+    return [autoprefixer({ browsers: ['last 3 versions'] })];
   },
   output: {
     path: __dirname + '/dist',

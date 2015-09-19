@@ -1,0 +1,49 @@
+/* Voting Screen */
+
+.voting {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  min-height: 800px;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex-flow: column;
+  user-select: none;
+}
+
+.voting button {
+  flex: auto;
+  background-color: #673AB7;
+  border-width: 0;
+}
+.voting button {
+  border-top: 1px solid white;
+}
+.voting button:active {
+  background-color: white;
+  color: #311B92;
+}
+.voting button.voted {
+  background-color: #311B92;
+}
+.voting button:not(.voted) .label {
+  visibility: hidden;
+}
+.voting button .label {
+  opacity: 0.87;
+}
+.voting button.votedAgainst * {
+  opacity: 0.3;
+}
+
+@media only screen and (min-device-width: $breakpoint) {
+  .voting {
+    flex-direction: row;
+  }
+
+  .voting button:first-child {
+    border-bottom-width: 0;
+    border-right: 1px solid white;
+  }
+}
