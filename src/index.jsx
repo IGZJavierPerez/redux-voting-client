@@ -12,7 +12,7 @@ import UhOh from './components/404';
 import {VotingContainer} from './components/Voting';
 import {ResultsContainer} from './components/Results';
 
-require('./style.css');
+require('./scss/main.scss');
 
 const socket = io(`${location.protocol}//${location.hostname}:8090`);
 socket.on('state', state =>
