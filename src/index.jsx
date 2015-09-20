@@ -1,5 +1,5 @@
 import React from 'react/addons';
-import Router, {Route, DefaultRoute, Redirect} from 'react-router';
+import Router, {Route, Redirect} from 'react-router';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import io from 'socket.io-client';
@@ -15,6 +15,12 @@ import {ResultsContainer} from './components/Results';
 require('./scss/main.scss');
 
 const socket = io(`${location.protocol}//${location.hostname}:8090`);
+
+const createStoreWithMiddleware = applyMiddleware(
+  remoteActionMiddleware(socket)
+)(createStore);
+const store = createStoreWithMiddleware(reducer);
+
 socket.on('state', state =>
   store.dispatch(setState(state))
 );
@@ -30,20 +36,16 @@ socket.on('state', state =>
   socket.on(ev, () => store.dispatch(setConnectionState(ev, socket.connected)))
 );
 
-const createStoreWithMiddleware = applyMiddleware(
-  remoteActionMiddleware(socket)
-)(createStore);
-const store = createStoreWithMiddleware(reducer);
 store.dispatch(setClientId(getClientId()));
 
-const routes = <Route handler={App}>
+const routes = ( <Route handler={App}>
   <Route path="/results" handler={ResultsContainer} />
   <Route path="/voting" handler={VotingContainer} />
   <Route name="404" path="/404" handler={ UhOh } />
   {/* Redirects */}
   <Redirect from="/" to="/voting" />
   <Redirect from="*" to="/404" />
-</Route>;
+</Route> );
 
 Router.run(routes, (Root) => {
   React.render(

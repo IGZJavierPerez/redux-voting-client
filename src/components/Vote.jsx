@@ -1,5 +1,5 @@
 import React from 'react/addons';
-import classNames from 'classnames'
+import classNames from 'classnames';
 
 export default React.createClass({
   mixins: [React.addons.PureRenderMixin],
@@ -13,7 +13,7 @@ export default React.createClass({
     return this.props.hasVoted === entry;
   },
   render: function() {
-    return <div className="voting">
+    return ( <div className="voting">
       {this.getPair().map(entry =>
         <button key={entry}
                 className={classNames({voted: this.hasVotedFor(entry)})}
@@ -25,6 +25,6 @@ export default React.createClass({
             null}
         </button>
       )}
-    </div>;
+    </div> );
   }
 });

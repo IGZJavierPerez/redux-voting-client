@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
+var friendlyFormatter = require('eslint-friendly-formatter');
 
 module.exports = {
   entry: [
@@ -12,7 +13,7 @@ module.exports = {
     loaders: [{
       test: /\.jsx?$/,
       include: path.join(__dirname, 'src'),
-      loader: 'react-hot!babel'
+      loaders: ['react-hot', 'babel', 'eslint']
     }, {
       test: /\.scss$/,
       include: path.join(__dirname, 'src'),
@@ -24,6 +25,9 @@ module.exports = {
   },
   postcss: function () {
     return [autoprefixer({ browsers: ['last 3 versions'] })];
+  },
+  eslint: {
+    formatter: friendlyFormatter,
   },
   output: {
     path: __dirname + '/dist',

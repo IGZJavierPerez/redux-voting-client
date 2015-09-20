@@ -5,12 +5,12 @@ import MainNavbar from './MainNavbar';
 
 export default React.createClass({
   render: function() {
-    return <div>
+    return ( <div>
       <MainNavbar />
-      <div classname="main">
+      <div className="main">
         <ConnectionStateContainer />
         <RouteHandler />
       </div>
-    </div>
+    </div> );
   }
 });
