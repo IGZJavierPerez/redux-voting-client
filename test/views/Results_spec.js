@@ -1,7 +1,7 @@
 import React from 'react/addons';
-import {List, Map} from 'immutable';
-import {Results} from '../../src/components/Results';
-import {expect} from 'chai';
+import { List, Map } from 'immutable';
+import { Results } from '../../src/views/Results';
+import { expect } from 'chai';
 
 const {renderIntoDocument, scryRenderedDOMComponentsWithClass, Simulate}
   = React.addons.TestUtils;
@@ -55,7 +55,7 @@ describe('Results', () => {
   it('renders the winner when there is one', () => {
     const component = renderIntoDocument(
       <Results winner="Trainspotting"
-               pair={["Trainspotting", "28 Days Later"]}
+               pair={['Trainspotting', '28 Days Later']}
                tally={Map()} />
     );
     const winner = React.findDOMNode(component.refs.winner);

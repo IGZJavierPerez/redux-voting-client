@@ -1,13 +1,15 @@
+import * as ActionTypes from './index';
+
 export function setClientId(clientId) {
   return {
-    type: 'SET_CLIENT_ID',
+    type: ActionTypes.SET_CLIENT_ID,
     clientId
   };
 }
 
 export function setConnectionState(state, connected) {
   return {
-    type: 'SET_CONNECTION_STATE',
+    type: ActionTypes.SET_CONNECTION_STATE,
     state,
     connected
   };
@@ -15,7 +17,7 @@ export function setConnectionState(state, connected) {
 
 export function setState(state) {
   return {
-    type: 'SET_STATE',
+    type: ActionTypes.SET_STATE,
     state
   };
 }
@@ -23,7 +25,7 @@ export function setState(state) {
 export function vote(entry) {
   return {
     meta: {remote: true},
-    type: 'VOTE',
+    type: ActionTypes.VOTE,
     entry
   };
 }
@@ -31,13 +33,13 @@ export function vote(entry) {
 export function next() {
   return {
     meta: {remote: true},
-    type: 'NEXT'
+    type: ActionTypes.NEXT
   };
 }
 
 export function restart() {
   return {
     meta: {remote: true},
-    type: 'RESTART'
+    type: ActionTypes.RESTART
   };
 }

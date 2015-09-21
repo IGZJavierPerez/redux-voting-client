@@ -1,42 +1,15 @@
 import React from 'react';
 import Router, {Route, Redirect} from 'react-router';
-import {createStore, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
-import io from 'socket.io-client';
-import reducer from './reducer';
-import {setClientId, setState, setConnectionState} from './action_creators';
-import remoteActionMiddleware from './remote_action_middleware';
-import getClientId from './client_id';
-import App from './components/App';
-import UhOh from './components/404';
-import {VotingContainer} from './components/Voting';
-import {ResultsContainer} from './components/Results';
+import { Provider } from 'react-redux';
+import App from './views/App';
+import UhOh from './views/404';
+import { VotingContainer } from './views/Voting';
+import { ResultsContainer } from './views/Results';
+import configureStore from './store/configure-store';
 
 require('./scss/main.scss');
 
-const socket = io(`${location.protocol}//${location.hostname}:8090`);
-
-const createStoreWithMiddleware = applyMiddleware(
-  remoteActionMiddleware(socket)
-)(createStore);
-const store = createStoreWithMiddleware(reducer);
-
-socket.on('state', state =>
-  store.dispatch(setState(state))
-);
-[
-  'connect',
-  'connect_error',
-  'connect_timeout',
-  'reconnect',
-  'reconnecting',
-  'reconnect_error',
-  'reconnect_failed'
-].forEach(ev =>
-  socket.on(ev, () => store.dispatch(setConnectionState(ev, socket.connected)))
-);
-
-store.dispatch(setClientId(getClientId()));
+const store = configureStore();
 
 const routes = ( <Route handler={App}>
   <Route path="/results" handler={ResultsContainer} />
@@ -54,5 +27,4 @@ Router.run(routes, (Root) => {
     </Provider>,
     document.getElementById('app')
   );
-
 });

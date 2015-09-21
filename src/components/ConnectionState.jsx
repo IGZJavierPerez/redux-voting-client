@@ -1,6 +1,6 @@
 import React from 'react/addons';
-import {connect} from 'react-redux';
-import {Map} from 'immutable';
+import { connect } from 'react-redux';
+import { Map } from 'immutable';
 
 export const ConnectionState = React.createClass({
   mixins: [React.addons.PureRenderMixin],

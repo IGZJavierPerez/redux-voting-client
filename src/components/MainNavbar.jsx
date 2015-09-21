@@ -1,5 +1,5 @@
 import React from 'react/addons';
-import { Navbar, Nav, NavItem, CollapsibleNav} from 'react-bootstrap';
+import { Navbar, Nav, NavItem, CollapsibleNav } from 'react-bootstrap';
 
 const MainNavbar = React.createClass({
   render() {

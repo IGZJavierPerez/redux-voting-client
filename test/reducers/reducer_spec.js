@@ -1,7 +1,7 @@
 import {List, Map, fromJS} from 'immutable';
-import {expect} from 'chai';
+import { expect } from 'chai';
 
-import reducer from '../src/reducer';
+import reducer from '../../src/reducers';
 
 describe('reducer', () => {
 
@@ -17,7 +17,7 @@ describe('reducer', () => {
       clientId: '1234'
     }));
   });
-  
+
   it('handles SET_STATE', () => {
     const initialState = Map();
     const action = {

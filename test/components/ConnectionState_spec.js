@@ -1,6 +1,6 @@
 import React from 'react/addons';
-import {expect} from 'chai';
-import {ConnectionState} from '../../src/components/ConnectionState';
+import { expect } from 'chai';
+import { ConnectionState } from '../../src/components/ConnectionState';
 
 const {renderIntoDocument, findRenderedDOMComponentWithTag}
   = React.addons.TestUtils;
@@ -8,7 +8,7 @@ const {renderIntoDocument, findRenderedDOMComponentWithTag}
 describe('ConnectionState', () => {
 
   it('is not visible when connected', () => {
-    const component = renderIntoDocument(<ConnectionState connected={true} />);
+    const component = renderIntoDocument(<ConnectionState connected />);
     const div = findRenderedDOMComponentWithTag(component, 'div');
     expect(div.getDOMNode().style.display).to.equal('none');
   });

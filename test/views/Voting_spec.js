@@ -1,7 +1,7 @@
 import React from 'react/addons';
-import {List} from 'immutable';
-import {Voting} from '../../src/components/Voting';
-import {expect} from 'chai';
+import { List } from 'immutable';
+import { Voting } from '../../src/views/Voting';
+import { expect } from 'chai';
 
 const {renderIntoDocument, scryRenderedDOMComponentsWithTag, Simulate}
   = React.addons.TestUtils;

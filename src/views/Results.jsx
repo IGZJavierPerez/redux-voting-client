@@ -1,7 +1,7 @@
 import React from 'react/addons';
-import {connect} from 'react-redux';
-import Winner from './Winner';
-import * as actionCreators from '../action_creators';
+import { connect } from 'react-redux';
+import Winner from '../components//Winner';
+import * as actionCreators from '../actions/action-creators';
 
 export const VOTE_WIDTH_PERCENT = 8;
 
