@@ -1,32 +1,22 @@
-import io from 'socket.io-client';
 import reducer from '../reducers';
-import getClientId from '../util/client-id';
-import { setClientId, setState, setConnectionState } from '../actions/action-creators';
+import { setState } from '../actions/action-creators';
 import { createStore, applyMiddleware } from 'redux';
-import remoteActionMiddleware from '../middleware/remote-action-middleware';
+import logMiddleware from '../middleware/log-middleware';
+import Firebase from 'firebase';
+import { firebaseUrl } from '../util/constants';
+import firebaseActionMiddleware from '../middleware/firebase-action-middleware';
 
-const socket = io(`${location.protocol}//${location.hostname}:8090`);
+const baseRef = new Firebase(firebaseUrl);
+const pollRef = baseRef.child('poll');
 
 const createStoreWithMiddleware = applyMiddleware(
-  remoteActionMiddleware(socket)
+  firebaseActionMiddleware(pollRef), logMiddleware
 )(createStore);
 
 export default function configureStore(initialState) {
   const store = createStoreWithMiddleware(reducer, initialState);
-  socket.on('state', state =>
-    store.dispatch(setState(state))
-  );
-  [
-    'connect',
-    'connect_error',
-    'connect_timeout',
-    'reconnect',
-    'reconnecting',
-    'reconnect_error',
-    'reconnect_failed'
-  ].forEach(ev =>
-    socket.on(ev, () => store.dispatch(setConnectionState(ev, socket.connected)))
-  );
-  store.dispatch(setClientId(getClientId()));
+
+  pollRef.on('value', pollObj => store.dispatch(setState(pollObj.val())));
+
   return store;
 }

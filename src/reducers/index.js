@@ -1,5 +1,6 @@
 import { Map } from 'immutable';
 import * as ActionTypes from '../actions';
+import { next } from './admin';
 
 function setConnectionState(state, connectionState, connected) {
   return state.set('connection', Map({
@@ -45,6 +46,8 @@ export default function(state = Map(), action) {
     return resetVote(setState(state, action.state));
   case ActionTypes.VOTE:
     return vote(state, action.entry);
+  case ActionTypes.NEXT:
+    return next(state, action);
   }
   return state;
 }

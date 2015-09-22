@@ -24,16 +24,20 @@ export function setState(state) {
 
 export function vote(entry) {
   return {
-    meta: {remote: true},
     type: ActionTypes.VOTE,
-    entry
+    firebase: {
+      preFn: (baseRef) => baseRef.child('vote/tally/' + entry).transaction(curr => (curr || 0) + 1)
+    }
   };
 }
 
 export function next() {
   return {
     meta: {remote: true},
-    type: ActionTypes.NEXT
+    type: ActionTypes.NEXT,
+    firebase: {
+      postFn: (baseRef) => baseRef.set.bind(baseRef)
+    }
   };
 }
 
